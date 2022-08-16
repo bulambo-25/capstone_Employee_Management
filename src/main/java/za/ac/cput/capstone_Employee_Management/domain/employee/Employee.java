@@ -6,15 +6,29 @@ Student Number 220145547
 Date April 9 2022
  */
 
-public class Employee {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+@Entity
+@Table(name="Employee")
+public class Employee implements Serializable {
+    @Id@NotNull@Column(name="employee_ID")
     private String employeeId;
+    @Column(name="first_Name")
     private String firstName;
+    @Column(name = "middle_Name")
+    private String middleName;
+    @Column(name = "last_Name")
     private String lastName;
 
-    private Employee() {
+    protected Employee() {
     }
     private Employee(Builder builder){
         this.firstName= builder.firstName;
+        this.middleName=builder.middleName;
         this.lastName= builder.lastName;
         this.employeeId= builder.employeeId;
 
@@ -23,25 +37,14 @@ public class Employee {
     public String getEmployeeId() {
         return employeeId;
     }
-
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
-    }
-
     public String getFirstName() {
         return firstName;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getMiddleName() {
+        return middleName;
     }
 
     @Override
@@ -49,17 +52,24 @@ public class Employee {
         return "Employee{" +
                 "employeeId='" + employeeId + '\'' +
                 ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
 
     public static class Builder {
         private String firstName;
+        private String middleName;
         private String lastName;
         private String employeeId;
 
         public Builder setFirstName(String firstName) {
             this.firstName = firstName;
+            return this;
+
+        }
+        public Builder setMiddleName(String middleName) {
+            this.middleName = middleName;
             return this;
 
         }
@@ -76,6 +86,7 @@ public class Employee {
 
         public Builder copy(Employee employee) {
             this.firstName = employee.firstName;
+            this.middleName = employee.middleName;
             this.lastName = employee.lastName;
             this.employeeId = employee.employeeId;
             return this;

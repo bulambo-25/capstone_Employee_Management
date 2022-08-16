@@ -1,21 +1,38 @@
 package za.ac.cput.capstone_Employee_Management.domain.employee;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
 /*
 EmployeeContact.java
 AUTHOR Farai Malone Chawora
 Student Number 220145547
 Date April 9 2022
  */
-
-public class EmployeeContact {
+@Entity
+@Table(name = "Employee_Contact")
+public class EmployeeContact implements Serializable {
+    @Id
+    @NotNull
+    @Column(name = "employee_Conatct_ID")
     private String employeeContactId;
+    @Column(name = "employee_ID")
     private String employeeId;
+    @Column(name = "contact_ID")
     private String contactId;
 
-    private EmployeeContact(){}
-    private EmployeeContact(Builder builder){
-        this.employeeId= builder.employeeId;
-        this.contactId= builder.contactId;
-        this.employeeContactId=builder.employeeContactId;
+
+    protected EmployeeContact() {
+    }
+
+    private EmployeeContact(Builder builder) {
+        this.employeeId = builder.employeeId;
+        this.contactId = builder.contactId;
+        this.employeeContactId = builder.employeeContactId;
     }
 
     public String getEmployeeId() {
@@ -39,7 +56,7 @@ public class EmployeeContact {
                 '}';
     }
 
-    public static class Builder{
+    public static class Builder {
         private String employeeId;
         private String contactId;
         private String employeeContactId;
@@ -53,16 +70,21 @@ public class EmployeeContact {
             this.contactId = contactId;
             return this;
         }
+
         public Builder setEmployeeContactId(String employeeContactId) {
             this.employeeContactId = employeeContactId;
             return this;
         }
-        public Builder copy(EmployeeContact empCnt){
-            this.employeeId=empCnt.employeeId;
-            this.contactId=empCnt.contactId;
-            this.employeeContactId=empCnt.employeeContactId;
-            return  this;
+
+        public Builder copy(EmployeeContact empCnt) {
+            this.employeeId = empCnt.employeeId;
+            this.contactId = empCnt.contactId;
+            this.employeeContactId = empCnt.employeeContactId;
+            return this;
         }
-        public EmployeeContact build(){return new EmployeeContact(this);}
+
+        public EmployeeContact build() {
+            return new EmployeeContact(this);
+        }
     }
 }

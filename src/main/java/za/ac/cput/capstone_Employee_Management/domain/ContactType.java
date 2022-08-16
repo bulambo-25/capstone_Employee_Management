@@ -1,16 +1,30 @@
 package za.ac.cput.capstone_Employee_Management.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
 /*
 ContactType.java
 AUTHOR Farai Malone Chawora
 Student Number 220145547
 Date April 9 2022
  */
-public class ContactType {
+@Entity
+@Table(name = "Contact_Type")
+public class ContactType implements Serializable {
+    @Id
+    @NotNull@Column(name = "contact_ID")
     private String contactId;
+    @Column(name = "email_Address")
     private String email;
+    @Column(name="contact_Numeber")
     private String phoneNumber;
 
-    private ContactType(){}
+    protected ContactType(){}
 
     private ContactType(Builder build){
         this.contactId= build.contactId;

@@ -35,12 +35,14 @@ public class Helper {
             throw new IllegalArgumentException("Invalid Value for:" + paraName);
 
     }
-    public static String IsValidEmail(String str) {
-        if (EmailValidator.getInstance().isValid(str)) {
+    public static void IsValidEmail(String str) {
+        if (!EmailValidator.getInstance().isValid(str))
+            throw new IllegalArgumentException("Invalid Email" );
+        /*{
             return str;
         }
         System.out.println("Please enter correct email");
-        String str2 = " Invalid Email";
-        return str2;
+        String str2 = "Invalid Email";
+        return str2;*/
     }
 }
