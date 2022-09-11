@@ -1,6 +1,6 @@
 package za.ac.cput.capstone_Employee_Management.domain;
 
-import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeAdrss;
+import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeContactType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,7 +26,7 @@ public class ContactType implements Serializable {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "contactType")
-    private Set<EmployeeAdrss> employeeAdrss=new HashSet<>();
+    private Set<EmployeeContactType> employeeAdrss=new HashSet<>();
 
     protected ContactType(){}
 

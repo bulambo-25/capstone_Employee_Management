@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Getter
-public class EmployeeAdrss {
+public class EmployeeContactType {
     @EmbeddedId
     EmployeeContactId ID;
     @ManyToOne
@@ -24,7 +24,7 @@ public class EmployeeAdrss {
     private ContactType contactType;
 
 
-    public EmployeeAdrss(Employee employee, ContactType contactType) {
+    public EmployeeContactType(Employee employee, ContactType contactType) {
         this.ID = new EmployeeContactId(employee.getEmployeeId(),contactType.getContactId());
         this.employee = employee;
         this.contactType = contactType;
