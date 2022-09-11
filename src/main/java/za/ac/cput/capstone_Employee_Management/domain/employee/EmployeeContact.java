@@ -1,11 +1,10 @@
 package za.ac.cput.capstone_Employee_Management.domain.employee;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
 EmployeeContact.java
@@ -24,6 +23,7 @@ public class EmployeeContact implements Serializable {
     private String employeeId;
     @Column(name = "contact_ID")
     private String contactId;
+
 
 
     protected EmployeeContact() {

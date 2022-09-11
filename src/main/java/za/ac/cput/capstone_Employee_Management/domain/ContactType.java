@@ -1,11 +1,12 @@
 package za.ac.cput.capstone_Employee_Management.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeAdrss;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
 ContactType.java
@@ -23,6 +24,9 @@ public class ContactType implements Serializable {
     private String email;
     @Column(name="contact_Numeber")
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "contactType")
+    private Set<EmployeeAdrss> employeeAdrss=new HashSet<>();
 
     protected ContactType(){}
 

@@ -8,6 +8,7 @@ public class AddressType
     private String areaName;
     private String city;
 
+
     public AddressType(Builder builder) {
         this.addressTypeId =builder.addressTypeId;
         this.streetName =builder.streetName;

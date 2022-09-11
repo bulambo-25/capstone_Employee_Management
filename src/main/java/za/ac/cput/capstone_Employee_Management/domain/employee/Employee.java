@@ -6,13 +6,16 @@ Student Number 220145547
 Date April 9 2022
  */
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Data;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
+@Data
 @Table(name="Employee")
 public class Employee implements Serializable {
     @Id@NotNull@Column(name="employee_ID")
@@ -23,6 +26,9 @@ public class Employee implements Serializable {
     private String middleName;
     @Column(name = "last_Name")
     private String lastName;
+
+    @OneToMany(mappedBy = "employee",cascade =CascadeType.ALL,orphanRemoval = true)
+    private Set<EmployeeAdrss> employeeAdrss=new HashSet<>();
 
     protected Employee() {
     }
