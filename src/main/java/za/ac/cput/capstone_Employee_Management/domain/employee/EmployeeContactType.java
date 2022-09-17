@@ -19,7 +19,7 @@ public class EmployeeContactType {
     @JoinColumn(name = "employee_Id")
     private  Employee employee;
     @ManyToOne
-    @MapsId("employeeContactId")
+    @MapsId("contactId")
     @JoinColumn(name = "contactType_Id")
     private ContactType contactType;
 

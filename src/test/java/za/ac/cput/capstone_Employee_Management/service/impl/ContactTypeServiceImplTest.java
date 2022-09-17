@@ -34,7 +34,7 @@ class ContactTypeServiceImplTest {
        assertAll(  ()->assertTrue(temp.isPresent()),
               ()-> assertNotNull(temp)
       );
-        System.out.println(temp);
+        System.out.println(temp);//068 347 0761
     }
     @Test
     void d_delete() {

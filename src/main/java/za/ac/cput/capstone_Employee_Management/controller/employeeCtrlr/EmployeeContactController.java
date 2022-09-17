@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import za.ac.cput.capstone_Employee_Management.domain.compositeID.EmployeeContactId;
 import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
 import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeContact;
 import za.ac.cput.capstone_Employee_Management.service.interf.employeeInterf.EmployeeContactService;
@@ -30,7 +31,7 @@ public class EmployeeContactController {
         return ResponseEntity.ok(save);
     }
     @PutMapping("read/{ID}")
-    public ResponseEntity<EmployeeContact> read(@PathVariable String ID) {
+    public ResponseEntity<EmployeeContact> read(@PathVariable EmployeeContactId ID) {
         EmployeeContact read = employeeContactService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(read);

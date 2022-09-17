@@ -2,6 +2,7 @@ package za.ac.cput.capstone_Employee_Management.service.impl.employeeImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.ac.cput.capstone_Employee_Management.domain.compositeID.EmployeeContactId;
 import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeContact;
 import za.ac.cput.capstone_Employee_Management.factory.EmployeeContactFactory;
 import za.ac.cput.capstone_Employee_Management.repository.interf.employeeInterf.EmployeeContactRepository;
@@ -24,9 +25,10 @@ final EmployeeContactRepository employeeContactRepository;
     }
 
     @Override
-    public Optional<EmployeeContact> read(String s) {
-        return employeeContactRepository.findById(s);
+    public Optional<EmployeeContact> read(EmployeeContactId employeeContactId) {
+        return Optional.empty();
     }
+
 
     @Override
     public void delete(EmployeeContact employeeContact) {

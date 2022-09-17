@@ -28,7 +28,7 @@ public class Employee implements Serializable {
     private String lastName;
 
     @OneToMany(mappedBy = "employee",cascade =CascadeType.ALL,orphanRemoval = true)
-    private Set<EmployeeContactType> employeeAdrss=new HashSet<>();
+    private Set<EmployeeContactType> employeeContactType =new HashSet<>();
 
     protected Employee() {
     }
