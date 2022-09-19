@@ -6,32 +6,38 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import za.ac.cput.capstone_Employee_Management.domain.compositeID.EmployeeContactId;
-import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
+import za.ac.cput.capstone_Employee_Management.api.EmployeeContactTypeApi;
+
 import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeContact;
 import za.ac.cput.capstone_Employee_Management.service.interf.employeeInterf.EmployeeContactService;
 
 import javax.validation.Valid;
 import java.util.List;
-
+/*
+ContactType.java
+AUTHOR Farai Malone Chawora
+Student Number 220145547
+Date 19 Sep 2022
+ */
 @Controller
 @RequestMapping("employee-management/employeeContact/")
 public class EmployeeContactController {
 
     final EmployeeContactService employeeContactService;
-
-    @Autowired
-    public EmployeeContactController(EmployeeContactService employeeContactService) {
+    final EmployeeContactTypeApi employeeContactTypeApi;
+@Autowired
+    public EmployeeContactController(EmployeeContactService employeeContactService, EmployeeContactTypeApi employeeContactTypeApi) {
         this.employeeContactService = employeeContactService;
+        this.employeeContactTypeApi = employeeContactTypeApi;
     }
 
     @PostMapping("save")
     public ResponseEntity<EmployeeContact> save(@RequestBody @Valid EmployeeContact employeeContact) {
-        EmployeeContact save = employeeContactService.save(employeeContact);
+        EmployeeContact save = employeeContactTypeApi.save(employeeContact);
         return ResponseEntity.ok(save);
     }
     @PutMapping("read/{ID}")
-    public ResponseEntity<EmployeeContact> read(@PathVariable EmployeeContactId ID) {
+    public ResponseEntity<EmployeeContact> read(@PathVariable EmployeeContact.EmployeeContactID ID) {
         EmployeeContact read = employeeContactService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(read);

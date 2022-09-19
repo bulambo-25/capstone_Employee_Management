@@ -1,15 +1,17 @@
 package za.ac.cput.capstone_Employee_Management.factory;
 
 import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeContact;
-import za.ac.cput.capstone_Employee_Management.helper.Helper;
-
+/*
+ContactType.java
+AUTHOR Farai Malone Chawora
+Student Number 220145547
+Date 19 Sep 2022
+ */
 public class EmployeeContactFactory {
-    public  static EmployeeContact build( String employeeId, String contactId){
-        String employeeContactId=Helper.generateID();
-        Helper.checkStringPara("employeeContactId",employeeContactId);
-        Helper.checkStringPara("employeeId",employeeId);
-        Helper.checkStringPara("contactId",contactId);
-        return new EmployeeContact.Builder().setEmployeeContactId(employeeContactId)
-                .setEmployeeId(employeeId).setContactId(contactId).build();
-    }
+ public  static EmployeeContact build(Long employeeId, Long contactId){
+
+     return new EmployeeContact.Builder()
+             .setEmployeeId(employeeId).setContactId(contactId).build();
+
+  }
 }

@@ -3,8 +3,6 @@ package za.ac.cput.capstone_Employee_Management.domain.employee;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /*
 EmployeeContact.java
@@ -14,17 +12,12 @@ Date April 9 2022
  */
 @Entity
 @Table(name = "Employee_Contact")
+@IdClass(EmployeeContact.EmployeeContactID.class)
 public class EmployeeContact implements Serializable {
-    @Id
-    @NotNull
-    @Column(name = "employee_Conatct_ID")
-    private String employeeContactId;
-    @Column(name = "employee_ID")
-    private String employeeId;
-    @Column(name = "contact_ID")
-    private String contactId;
 
+    @Id @NotNull
 
+    private Long employeeId,contactId;
 
     protected EmployeeContact() {
     }
@@ -32,21 +25,19 @@ public class EmployeeContact implements Serializable {
     private EmployeeContact(Builder builder) {
         this.employeeId = builder.employeeId;
         this.contactId = builder.contactId;
-        this.employeeContactId = builder.employeeContactId;
+
     }
 
-    public String getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
 
 
-    public String getContactId() {
+    public Long getContactId() {
         return contactId;
     }
 
-    public String getEmployeeContactId() {
-        return employeeContactId;
-    }
+
 
     @Override
     public String toString() {
@@ -56,30 +47,49 @@ public class EmployeeContact implements Serializable {
                 '}';
     }
 
-    public static class Builder {
-        private String employeeId;
-        private String contactId;
-        private String employeeContactId;
 
-        public Builder setEmployeeId(String employeeId) {
+       public static class EmployeeContactID implements Serializable{
+
+        private Long employeeId, contactId;
+
+    public EmployeeContactID(Long employeeID, Long contactID) {
+        this.employeeId = employeeID;
+        this.contactId = contactID;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public Long getContactId() {
+        return contactId;
+    }
+
+    protected EmployeeContactID() {
+    }
+}
+
+    public static class Builder {
+        private Long employeeId;
+        private Long contactId;
+
+
+        public Builder setEmployeeId(Long employeeId) {
             this.employeeId = employeeId;
             return this;
         }
 
-        public Builder setContactId(String contactId) {
+        public Builder setContactId(Long contactId) {
             this.contactId = contactId;
             return this;
         }
 
-        public Builder setEmployeeContactId(String employeeContactId) {
-            this.employeeContactId = employeeContactId;
-            return this;
-        }
+
 
         public Builder copy(EmployeeContact empCnt) {
             this.employeeId = empCnt.employeeId;
             this.contactId = empCnt.contactId;
-            this.employeeContactId = empCnt.employeeContactId;
+
             return this;
         }
 

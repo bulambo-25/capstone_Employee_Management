@@ -26,8 +26,13 @@ public class ContactTypeServiceImpl implements ContactTypeService {
     }
 
     @Override
-    public void deleteByID(String ID) {
+    public void deleteByID(Long ID) {
         contactTypeRepository.deleteById(ID);
+    }
+
+    @Override
+    public ContactType findByEmail(String email) {
+        return contactTypeRepository.findContactTypeByEmail(email);
     }
 
     @Override
@@ -38,7 +43,7 @@ public class ContactTypeServiceImpl implements ContactTypeService {
     }
 
     @Override
-    public Optional<ContactType> read(String ID) {
+    public Optional<ContactType> read(Long ID) {
         return contactTypeRepository.findById(ID);
     }
 

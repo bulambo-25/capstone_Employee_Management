@@ -1,32 +1,32 @@
 package za.ac.cput.capstone_Employee_Management.domain;
 
-import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeContactType;
+import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /*
 ContactType.java
 AUTHOR Farai Malone Chawora
 Student Number 220145547
-Date April 9 2022
+Date 19 Sep 2022
  */
 @Entity
 @Table(name = "Contact_Type")
 public class ContactType implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     @NotNull@Column(name = "contact_ID")
-    private String contactId;
-    @Column(name = "email_Address")
+    private Long contactId;
+    @Column(name = "email_Address", unique = true)
     private String email;
-    @Column(name="contact_Numeber")
+    @Column(name="contact_Numeber", length = 10)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "contactType")
-    private Set<EmployeeContactType> employeeAdrss=new HashSet<>();
+
 
     protected ContactType(){}
 
@@ -38,21 +38,17 @@ public class ContactType implements Serializable {
 
     }
 
-    public String getContactId() {
+    public Long getContactId() {
         return contactId;
     }
 
-    public void setContactId(String contactId) {
-        this.contactId = contactId;
-    }
+
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -72,11 +68,11 @@ public class ContactType implements Serializable {
     }
 
     public static class Builder{
-        private String contactId;
+        private Long contactId;
         private String email;
         private String phoneNumber;
 
-        public Builder setContactId(String contactId) {
+        public Builder setContactId(Long contactId) {
             this.contactId = contactId;
             return this;
         }

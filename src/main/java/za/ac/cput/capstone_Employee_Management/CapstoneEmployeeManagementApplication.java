@@ -5,7 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import za.ac.cput.capstone_Employee_Management.domain.ContactType;
+import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
+import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeContact;
+
 import za.ac.cput.capstone_Employee_Management.factory.ContactTypeFactory;
+
 import za.ac.cput.capstone_Employee_Management.factory.EmployeeFactory;
 import za.ac.cput.capstone_Employee_Management.service.impl.ContactTypeServiceImpl;
 import za.ac.cput.capstone_Employee_Management.service.impl.employeeImpl.EmployeeContactServiceImpl;
@@ -19,13 +23,16 @@ public class CapstoneEmployeeManagementApplication {
     }
 
     @Bean
-    CommandLineRunner run(ContactTypeServiceImpl contactTypeService, EmployeeServiceImpl employeeService) {
+    CommandLineRunner run(ContactTypeServiceImpl contactTypeService, EmployeeServiceImpl employeeService,EmployeeContactServiceImpl employeeContactService) {
         return  args -> {
-            contactTypeService.save( ContactTypeFactory.build("fc@gmail.com","0879986541"));
-            contactTypeService.save( ContactTypeFactory.build("manu@gmail.com","0896541232"));
-            employeeService.save(EmployeeFactory.build("Farai","Malone","Chawora"));
-            employeeService.save(EmployeeFactory.build("Manu","Tatenda","Chawora"));
-        };
+            ContactType con =ContactTypeFactory.build("ms@gmail.com","0879986541");
+            Employee emp=EmployeeFactory.build("martinez","sarafi","safari");
+            contactTypeService.save(con);
+            employeeService.save(emp);
+            EmployeeContact empCon= new EmployeeContact.Builder().setEmployeeId(emp.getEmployeeId()).setContactId(con.getContactId()).build();
+           employeeContactService.save(new EmployeeContact.Builder().setEmployeeId(12L).setContactId(2L).build());
+
+    };
 
     }
 }

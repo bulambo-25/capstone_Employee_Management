@@ -2,10 +2,14 @@ package za.ac.cput.capstone_Employee_Management.repository.interf.employeeInterf
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import za.ac.cput.capstone_Employee_Management.domain.compositeID.EmployeeContactId;
 import za.ac.cput.capstone_Employee_Management.domain.employee.EmployeeContact;
-
+/*
+ContactType.java
+AUTHOR Farai Malone Chawora
+Student Number 220145547
+Date 19 Sep 2022
+ */
 @Repository
-public interface EmployeeContactRepository extends JpaRepository<EmployeeContact, EmployeeContactId> {
+public interface EmployeeContactRepository extends JpaRepository<EmployeeContact, EmployeeContact.EmployeeContactID> {
 
 }

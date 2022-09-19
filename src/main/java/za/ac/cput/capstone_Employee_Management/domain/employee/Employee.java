@@ -7,19 +7,25 @@ Date April 9 2022
  */
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+import za.ac.cput.capstone_Employee_Management.domain.ContactType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Data
 @Table(name="Employee")
 public class Employee implements Serializable {
-    @Id@NotNull@Column(name="employee_ID")
-    private String employeeId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull@Column(name="employee_ID")
+    private Long employeeId;
     @Column(name="first_Name")
     private String firstName;
     @Column(name = "middle_Name")
@@ -27,8 +33,7 @@ public class Employee implements Serializable {
     @Column(name = "last_Name")
     private String lastName;
 
-    @OneToMany(mappedBy = "employee",cascade =CascadeType.ALL,orphanRemoval = true)
-    private Set<EmployeeContactType> employeeContactType =new HashSet<>();
+
 
     protected Employee() {
     }
@@ -40,7 +45,7 @@ public class Employee implements Serializable {
 
     }
 
-    public String getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
     public String getFirstName() {
@@ -67,7 +72,7 @@ public class Employee implements Serializable {
         private String firstName;
         private String middleName;
         private String lastName;
-        private String employeeId;
+        private Long employeeId;
 
         public Builder setFirstName(String firstName) {
             this.firstName = firstName;
@@ -85,7 +90,7 @@ public class Employee implements Serializable {
             return this;
         }
 
-        public Builder setEmployeeId(String employeeId) {
+        public Builder setEmployeeId(Long employeeId) {
             this.employeeId = employeeId;
             return this;
         }
@@ -103,5 +108,7 @@ public class Employee implements Serializable {
             return new Employee(this);
         }
     }
+
+
 }
 

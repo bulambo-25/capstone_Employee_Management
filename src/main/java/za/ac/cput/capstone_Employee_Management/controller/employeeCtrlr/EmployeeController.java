@@ -12,7 +12,12 @@ import za.ac.cput.capstone_Employee_Management.service.interf.employeeInterf.Emp
 
 import javax.validation.Valid;
 import java.util.List;
-
+/*
+ContactType.java
+AUTHOR Farai Malone Chawora
+Student Number 220145547
+Date 19 Sep 2022
+ */
 @Controller
 @RequestMapping("employee-management/employee/")
 public class EmployeeController {
@@ -24,15 +29,20 @@ public class EmployeeController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<Employee> save(@RequestBody @Valid Employee employee) {
+    public ResponseEntity<Employee> save(@RequestBody Employee employee) {
         Employee save = employeeService.save(employee);
         return ResponseEntity.ok(save);
     }
 
     @PutMapping("read/{ID}")
-    public ResponseEntity<Employee> read(@PathVariable String ID) {
+    public ResponseEntity<Employee> read(@PathVariable Long ID) {
         Employee read = employeeService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return ResponseEntity.ok(read);
+    }
+    @PutMapping("findByName/{name}")
+    public ResponseEntity<List<Employee>> findByLastName(@PathVariable String name) {
+        List<Employee>  read = employeeService.findByName(name);
         return ResponseEntity.ok(read);
     }
     @DeleteMapping("delete")
@@ -41,7 +51,7 @@ public class EmployeeController {
         return ResponseEntity.noContent().build();
     }
     @DeleteMapping("deleteById/{ID}")
-    public ResponseEntity<Void> deleteById(@PathVariable String ID) {
+    public ResponseEntity<Void> deleteById(@PathVariable Long ID) {
         this.employeeService.deleteByEmployeeId(ID);
         return ResponseEntity.noContent().build();
     }

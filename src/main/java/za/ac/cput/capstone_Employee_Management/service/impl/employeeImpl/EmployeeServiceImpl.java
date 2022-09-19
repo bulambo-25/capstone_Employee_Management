@@ -25,9 +25,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> read(String Id) {
+    public Optional<Employee> read(Long Id) {
         return employeeRepository.findById(Id);
     }
+
 
     @Override
     public void delete(Employee employee) {
@@ -40,7 +41,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteByEmployeeId(String ID) {
+    public void deleteByEmployeeId(Long ID) {
          employeeRepository.deleteById(ID);
     }
+
+  @Override
+  public List<Employee> findByName(String name) {
+    return employeeRepository.findEmployeeByLastNameIgnoreCase(name);
+  }
+
+
+
 }

@@ -11,7 +11,12 @@ import za.ac.cput.capstone_Employee_Management.service.impl.ContactTypeServiceIm
 
 import javax.validation.Valid;
 import java.util.List;
-
+/*
+ContactType.java
+AUTHOR Farai Malone Chawora
+Student Number 220145547
+Date 19 Sep 2022
+ */
 @Controller
 @RequestMapping("employee-management/contactType/")
 public class ContactTypeController {
@@ -23,16 +28,21 @@ public class ContactTypeController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<ContactType> save(@RequestBody @Valid ContactType contactType) {
+    public ResponseEntity<ContactType> save(@RequestBody  ContactType contactType) {
         ContactType save = contactTypeService.save(contactType);
         return ResponseEntity.ok(save);
     }
 
     @PutMapping("read/{ID}")
-    public ResponseEntity<ContactType> read(@PathVariable String ID) {
+    public ResponseEntity<ContactType> read(@PathVariable Long ID) {
         ContactType read = contactTypeService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(read);
+    }
+    @PutMapping("findByEmail/{email}")
+    public ResponseEntity<ContactType> read(@PathVariable String email) {
+        ContactType findByEmail = contactTypeService.findByEmail(email);
+        return ResponseEntity.ok(findByEmail);
     }
 
     @DeleteMapping("delete")
@@ -42,7 +52,7 @@ public class ContactTypeController {
     }
 
     @DeleteMapping("deleteById/{ID}")
-    public ResponseEntity<Void> delete(@PathVariable String ID) {
+    public ResponseEntity<Void> delete(@PathVariable Long ID) {
         this.contactTypeService.deleteByID(ID);
         return ResponseEntity.noContent().build();
     }

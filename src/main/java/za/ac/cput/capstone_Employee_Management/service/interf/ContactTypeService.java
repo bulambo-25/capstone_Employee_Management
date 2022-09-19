@@ -4,7 +4,8 @@ import za.ac.cput.capstone_Employee_Management.domain.ContactType;
 
 import java.util.List;
 
-public interface ContactTypeService extends IService <ContactType,String>{
+public interface ContactTypeService extends IService <ContactType,Long>{
     List<ContactType> findAll();
-    void deleteByID(String ID);
+    void deleteByID(Long ID);
+    ContactType findByEmail(String email);
 }
