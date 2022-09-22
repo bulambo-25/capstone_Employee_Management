@@ -4,15 +4,21 @@ package za.ac.cput.capstone_Employee_Management.domain.employee;
 Employee-management-system.java
 EmployeeDepartment.java
 Author: Martinez Safari 219325332
-Date: 07/04/2022
+Date: 22/09/2022
  */
 
-public class EmployeeDepartment {
-    private String employeeId;
-    private String deptId;
+import javax.persistence.*;
+import java.io.Serializable;
 
-    private EmployeeDepartment() {
-    }
+@Entity
+@Table(name = "Employee_Department")
+@IdClass(EmployeeDepartment.EmployeeDepartmentID.class)
+public class EmployeeDepartment implements Serializable {
+
+    @Id
+    private Long employeeId;
+    @Id
+    private Long deptId;
 
     private EmployeeDepartment(Builder builder) {
         this.employeeId = builder.employeeId;
@@ -20,19 +26,23 @@ public class EmployeeDepartment {
 
     }
 
-    public String getEmployeeId() {
+    protected EmployeeDepartment() {
+
+    }
+
+    public Long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
-    public String getDeptId() {
+    public Long getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(String deptId) {
+    public void setDeptId(Long deptId) {
         this.deptId = deptId;
     }
 
@@ -44,28 +54,49 @@ public class EmployeeDepartment {
                 '}';
     }
 
-    public static class Builder {
-        private String employeeId;
-        private String deptId;
 
-        public Builder setEmployeeId(String employeeId) {
-            this.employeeId = employeeId;
-            return this;
+    public static class EmployeeDepartmentID implements Serializable {
+
+        private Long employeeId, deptId;
+
+        protected EmployeeDepartmentID() {
         }
 
-        public Builder setDeptId(String deptId) {
-            this.deptId = deptId;
-            return this;
+        public Long getEmployeeId() {
+            return employeeId;
         }
 
-        public Builder copy(EmployeeDepartment employeeDepartment) {
-            this.employeeId = employeeDepartment.employeeId;
-            this.deptId = employeeDepartment.deptId;
-            return this;
+        public Long getDeptId() {
+            return deptId;
         }
 
-        public EmployeeDepartment build() {
-            return new EmployeeDepartment(this);
+        public EmployeeDepartmentID(Long employeeID, Long deptID) {
+            this.employeeId = employeeID;
+            this.deptId = deptID;
         }
     }
-}
+        public static class Builder {
+            private Long employeeId;
+            private Long deptId;
+
+            public Builder setEmployeeId(Long employeeId) {
+                this.employeeId = employeeId;
+                return this;
+            }
+
+            public Builder setDeptId(Long deptId) {
+                this.deptId = deptId;
+                return this;
+            }
+
+            public Builder copy(EmployeeDepartment employeeDepartment) {
+                this.employeeId = employeeDepartment.employeeId;
+                this.deptId = employeeDepartment.deptId;
+                return this;
+            }
+
+            public EmployeeDepartment build() {
+                return new EmployeeDepartment(this);
+            }
+        }
+    }
