@@ -1,13 +1,59 @@
 package za.ac.cput.capstone_Employee_Management.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
+
+import static javax.persistence.GenerationType.SEQUENCE;
+/*
+EmployeeAddressAPI.java
+AUTHOR Mutamba Prince Bulambo
+Student Number 220177767
+Date April 11 2022
+ */
+@Entity
 public class AddressType
 {
-    private String addressTypeId;
+    @Id
+    @SequenceGenerator(name ="EmployeeGenderId_Sequence",sequenceName = "ORACLE_DB_SEQ_ID",
+            allocationSize = 2,initialValue = 323456590)
+    @GeneratedValue(strategy = SEQUENCE ,generator = "EmployeeGenderId_Sequence")
+    private Long  addressTypeId;
+    @NotNull
     private String streetName;
+    @NotNull
     private String postalCode;
+    @NotNull
     private String areaName;
+    @NotNull
     private String city;
 
+    public AddressType() {
+
+    }
+
+
+    public Long getAddressTypeId() {
+        return addressTypeId;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public String getCity() {
+        return city;
+    }
 
     public AddressType(Builder builder) {
         this.addressTypeId =builder.addressTypeId;
@@ -17,45 +63,6 @@ public class AddressType
         this.city = builder.city;
     }
 
-    public String getAddressTypeId() {
-        return addressTypeId;
-    }
-
-    public void setAddressTypeId(String addressTypeId) {
-        this.addressTypeId = addressTypeId;
-    }
-
-    public String getStreetName() {
-        return streetName;
-    }
-
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getAreaName() {
-        return areaName;
-    }
-
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
 
     @Override
     public String toString() {
@@ -68,12 +75,13 @@ public class AddressType
                 '}';
     }
     public static class Builder{
-        private String addressTypeId;
+        private Long addressTypeId;
         private String streetName;
         private String postalCode;
         private String areaName;
         private String city;
-        public Builder setAddressTypeId(String addressTypeId) {
+
+        public Builder setAddressTypeId(Long addressTypeId) {
             this.addressTypeId = addressTypeId;
             return this;
         }
