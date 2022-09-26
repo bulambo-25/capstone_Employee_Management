@@ -4,16 +4,27 @@ package za.ac.cput.capstone_Employee_Management.domain;
 Employee-management-system.java
 Department.java
 Author: Martinez Safari 219325332
-Date: 07/04/2022
+Date: 22/09/2022
  */
 
-public class Department {
 
-    private String deptId;
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "Department")
+public class Department implements Serializable{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "department_ID")
+    private Long deptId;
+    @Column(name = "department_Name")
     private String deptName;
+    @Column(name = "department_Description")
     private String deptDesc;
 
-
+    protected Department(){}
 
     private Department(Builder builder){
         this.deptId= builder.deptId;
@@ -22,7 +33,7 @@ public class Department {
 
 
     }
-    public String getDeptId() {
+    public Long getDeptId() {
         return deptId;
     }
 
@@ -42,9 +53,10 @@ public class Department {
                 '}';
     }
     public static class Builder{
-        private String deptId, deptName, deptDesc;
+        private String deptName, deptDesc;
+        private Long deptId;
 
-        public Builder setDeptId(String deptId) {
+        public Builder setDeptId(Long deptId) {
             this.deptId = deptId;
             return this;
         }
