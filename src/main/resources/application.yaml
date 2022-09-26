@@ -7,6 +7,8 @@ spring:
       ddl-auto: create
     show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3308/CapstoneEM-db?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/CapstoneEM-db?createDatabaseIfNotExist=true
     username: root
+    password: 123password
+
 

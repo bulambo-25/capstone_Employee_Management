@@ -29,23 +29,15 @@ public class CapstoneEmployeeManagementApplication {
 
     @Bean
     CommandLineRunner run(ContactTypeServiceImpl contactTypeService, EmployeeServiceImpl employeeService
-            , EmployeeContactServiceImpl employeeContactService, EmployeeAddressIm employeeAddressIm, AddressTypeimpl addressTypeimpl) {
+            , EmployeeContactServiceImpl employeeContactService) {
         return  args -> {
             ContactType con =ContactTypeFactory.build("ms@gmail.com","0879986541");
             Employee emp=EmployeeFactory.build("martinez","sarafi","safari");
             contactTypeService.save(con);
             employeeService.save(emp);
             EmployeeContact empCon= new EmployeeContact.Builder().setEmployeeId(emp.getEmployeeId()).setContactId(con.getContactId()).build();
-           employeeContactService.save(new EmployeeContact.Builder().setEmployeeId(12L).setContactId(2L).build());
-            AddressType addressType= AddressTypeFactory.buildAddressType("fame Crescent","7140"
-                    ,"Strand","CAPEtOWN ");
-            addressTypeimpl.save(addressType);
-            EmployeeAddress employeeAddress= new EmployeeAddress.Builder().setEmployeeId(3L)
-                    .setAddressTypeId(323456590L).Build();
-            System.out.println(employeeAddress.toString());
-            System.out.println(emp.toString());
-            System.out.println(addressType.toString());
-           employeeAddressIm.save(employeeAddress);
+           //employeeContactService.save(new EmployeeContact.Builder().setEmployeeId(12L).setContactId(2L).build());
+
     };
 
     }
