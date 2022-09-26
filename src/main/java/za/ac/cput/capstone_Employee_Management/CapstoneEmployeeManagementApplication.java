@@ -30,11 +30,11 @@ public class CapstoneEmployeeManagementApplication {
     @Bean
         //CommandLineRunner run(ContactTypeServiceImpl contactTypeService, EmployeeServiceImpl employeeService,EmployeeContactServiceImpl employeeContactService) {
         // return  args -> {
-    //Employee emp=EmployeeFactory.build("martinez","sarafi","safari");
-    // contactTypeService.save(con);
-    // employeeService.save(emp);
-    //EmployeeContact empCon= new EmployeeContact.Builder().setEmployeeId(emp.getEmployeeId()).setContactId(con.getContactId()).build();
-    // employeeContactService.save(new EmployeeContact.Builder().setEmployeeId(12L).setContactId(2L).build());
+        //Employee emp=EmployeeFactory.build("martinez","sarafi","safari");
+        // contactTypeService.save(con);
+        // employeeService.save(emp);
+        //EmployeeContact empCon= new EmployeeContact.Builder().setEmployeeId(emp.getEmployeeId()).setContactId(con.getContactId()).build();
+        // employeeContactService.save(new EmployeeContact.Builder().setEmployeeId(12L).setContactId(2L).build());
 
     CommandLineRunner run(EmployeeDepartmentServiceImpl employeeDepartmentService, EmployeeServiceImpl employeeService,DepartmentServiceImpl departmentService) {
         return args -> {
@@ -52,3 +52,4 @@ public class CapstoneEmployeeManagementApplication {
         //
     }
 }
+

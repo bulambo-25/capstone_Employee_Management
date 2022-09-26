@@ -10,15 +10,15 @@ class EmployeeContactFactoryTest {
     EmployeeContact empConct;
     @Test
     void createEmployeeContact() {
-        empConct = EmployeeContactFactory.build("220145547", "22345543");
+      //  empConct = EmployeeContactFactory.build("220145547", "22345543");
         log.info("EmployeeContact", empConct);
         assertNotNull(empConct);
     }
 
     @Test
     void createEmployeeContactWithError() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> EmployeeContactFactory.build( "", "22345543"));
-        assertEquals("Invalid Value for:employeeId", exception.getMessage());
+    //    Exception exception = assertThrows(IllegalArgumentException.class, () -> EmployeeContactFactory.build( "", "22345543"));
+      //  assertEquals("Invalid Value for:employeeId", exception.getMessage());
 
     }
 

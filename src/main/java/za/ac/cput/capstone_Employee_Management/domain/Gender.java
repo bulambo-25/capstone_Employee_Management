@@ -1,10 +1,32 @@
 package za.ac.cput.capstone_Employee_Management.domain;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+import static javax.persistence.GenerationType.SEQUENCE;
+/*
+EmployeeAddressAPI.java
+AUTHOR Mutamba Prince Bulambo
+Student Number 220177767
+Date April 11 2022
+ */
+@Entity
 public class Gender {
 
-    private String genderId;
+    @Id
+    @SequenceGenerator(name ="EmployeeGenderId_Sequence",sequenceName = "ORACLE_DB_SEQ_ID",
+            allocationSize = 2,initialValue = 2023456590)
+    @GeneratedValue(strategy = SEQUENCE ,generator = "EmployeeGenderId_Sequence")
+    private Long genderId;
+    @NotNull
     private String genderType;
     private String description;
+
+    public void setEmtp(String emtp) {
+        this.emtp = emtp;
+    }
+
+    public String emtp;
 
     public Gender(Builder builder)
     {
@@ -12,7 +34,12 @@ public class Gender {
         this.genderType=builder.genderType;
         this.description=builder.description;
     }
-    public String getGenderId() {
+
+    public Gender() {
+
+    }
+
+    public Long getGenderId() {
         return genderId;
     }
 
@@ -36,11 +63,11 @@ public class Gender {
 
     public static class Builder
     {
-        private String genderId;
+        private Long genderId;
         private String genderType;
         private String description;
 
-        public Builder setGenderId(String genderId) {
+        public Builder setGenderId(Long genderId) {
             this.genderId =genderId;
             return this;
         }

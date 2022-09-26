@@ -1,9 +1,23 @@
 package za.ac.cput.capstone_Employee_Management.domain.employee;
 
-public class EmployeeGender
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+import java.io.Serializable;
+/*
+EmployeeAddressAPI.java
+AUTHOR Mutamba Prince Bulambo
+Student Number 220177767
+Date April 11 2022
+ */
+@Entity
+@IdClass(EmployeeGender.EmployeeGenderID.class)
+public class EmployeeGender implements Serializable
 {
-    private String genderId;
-    private String employeeId;
+    @Id @NotNull
+    private Long genderId;
+    @NotNull
+    private Long employeeId;
 
     public EmployeeGender(Builder builder)
     {
@@ -11,12 +25,17 @@ public class EmployeeGender
         this.employeeId=builder.employeeId;
 
     }
-    public String getGenderId()
+
+    public EmployeeGender() {
+
+    }
+
+    public Long getGenderId()
     {
         return genderId;
     }
 
-    public String getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
 
@@ -28,19 +47,42 @@ public class EmployeeGender
                 ", employeeId='" + employeeId + '\'' +
                 '}';
     }
+    public static class EmployeeGenderID implements Serializable {
 
+        private Long employeeId, genderId;
+
+        protected EmployeeGenderID() {
+        }
+
+        public EmployeeGenderID(Long employeeID, Long genderId) {
+            this.employeeId = employeeID;
+            this.genderId = genderId;
+        }
+
+        public Long getEmployeeId() {
+            return employeeId;
+        }
+
+        public Long genderId() {
+            return genderId;
+        }
+
+    }
 
     public static class Builder
     {
-        private String genderId;
-        private String employeeId;
 
-        public Builder setGenderId(String genderId) {
+        private Long genderId;
+        private Long employeeId;
+
+
+
+        public Builder setGenderId(Long genderId) {
             this.genderId =genderId;
             return this;
         }
 
-        public Builder setEmployeeId(String employeeId) {
+        public Builder setEmployeeId(Long employeeId) {
             this.employeeId = employeeId;
             return this;
         }
