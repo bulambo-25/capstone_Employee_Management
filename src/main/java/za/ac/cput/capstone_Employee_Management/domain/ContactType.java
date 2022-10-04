@@ -23,7 +23,7 @@ public class ContactType implements Serializable {
     private Long contactId;
     @Column(name = "email_Address", unique = true)
     private String email;
-    @Column(name="contact_Numeber", length = 10)
+    @Column(name="contact_Number", length = 10)
     private String phoneNumber;
 
 

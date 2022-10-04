@@ -1,15 +1,31 @@
 package za.ac.cput.capstone_Employee_Management.domain;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
 /* Salary.java
  Entity for the Salary
  Author: Taariq Khan (219231141)
  Date: 2 April 2022*/
-public class Salary
+@Entity
+@Table(name = "Salary")
+public class Salary implements Serializable
 {
-    private String salaryId;
-    private double salaryAmount;
-    private String salaryDescription;
-    private Payroll payroll;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
+    @NotNull@Column(name = "salary_ID")
+    private Long salaryId;
+    @Column(name = "salary_Amount")
+    private String salaryAmount;
+    @Column(name = "salary_Description")
+    private String salaryDescription;
+
+    protected Salary()
+    {
+
+    }
     private Salary(Builder builder)
     {
         this.salaryId = builder.salaryId;
@@ -17,22 +33,22 @@ public class Salary
         this.salaryDescription = builder.salaryDescription;
     }
 
-    public String getSalaryId()
+    public Long getSalaryId()
     {
         return salaryId;
     }
 
-    public void setSalaryId(String salaryId)
+    public void setSalaryId(Long salaryId)
     {
         this.salaryId = salaryId;
     }
 
-    public double getSalaryAmount()
+    public String getSalaryAmount()
     {
         return salaryAmount;
     }
 
-    public void setSalaryAmount(double salaryAmount)
+    public void setSalaryAmount(String salaryAmount)
     {
         this.salaryAmount = salaryAmount;
     }
@@ -47,16 +63,6 @@ public class Salary
         this.salaryDescription = salaryDescription;
     }
 
-    public Payroll getPayroll()
-    {
-        return payroll;
-    }
-
-    public void setPayroll(Payroll payroll)
-    {
-        this.payroll = payroll;
-    }
-
     @Override
     public String toString()
     {
@@ -64,16 +70,16 @@ public class Salary
     }
     public static class Builder
     {
-        private String salaryId;
-        private double salaryAmount;
+        private Long salaryId;
+        private String salaryAmount;
         private String salaryDescription;
 
-        public Builder setSalaryId(String salaryId)
+        public Builder setSalaryId(Long salaryId)
         {
             this.salaryId = salaryId;
             return this;
         }
-        public Builder setSalaryAmount(double salaryAmount)
+        public Builder setSalaryAmount(String salaryAmount)
         {
             this.salaryAmount = salaryAmount;
             return this;
