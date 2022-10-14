@@ -39,16 +39,10 @@ public class EmployeeContactTypeApi {
        return employeeContactService.save(employeeContact);
     }
 
-// public List<String> getEmployeeByEmail( ){
-//    List<Employee>empList=employeeService.findAll();
-//   empList=new ArrayList<>();
-//   List<ContactType> contactTypeList=contactTypeService.findAll();
-//ArrayList<String> empName= new ArrayList<>();
-//   contactTypeList=new ArrayList<>();
-//
-//   for(Employee employee: empList){
-//       empName.add(employee.getLastName());
-//   }
-//
-// }
+    public void deleEmployeeContact(EmployeeContact employeeContact){
+        employeeService.read(employeeContact.getEmployeeId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Employee does not  exist"));
+        contactTypeService.read(employeeContact.getContactId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Contact Type does not exits"));
+        employeeContactService.delete(employeeContact);
+
+    }
 }
