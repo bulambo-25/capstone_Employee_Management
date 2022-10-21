@@ -13,7 +13,8 @@ public enum ApplicationUserRole {
     ADMIN(Sets.newHashSet(EMPLOYEE_SAVE,EMPLOYEE_VIEW,EMPLOYEE_DELETE)),
     EMP(Sets.newHashSet(
             EMPLOYEE_EDIT, EMPLOYEE_VIEW
-                 ));
+                 )),
+    MANAGER(Sets.newHashSet(EMPLOYEE_SAVE,EMPLOYEE_VIEW));
 
     private final Set<ApplicationUserPermission> userPermissions;
 

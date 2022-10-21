@@ -14,8 +14,7 @@ public class Salary implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
-    @NotNull@Column(name = "salary_ID")
+    @Column(name = "salary_ID")
     private Long salaryId;
     @Column(name = "salary_Amount")
     private String salaryAmount;
@@ -24,7 +23,6 @@ public class Salary implements Serializable
 
     protected Salary()
     {
-
     }
     private Salary(Builder builder)
     {

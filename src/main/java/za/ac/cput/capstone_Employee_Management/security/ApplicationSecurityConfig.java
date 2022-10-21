@@ -9,8 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserPermission.*;
-import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserRole.ADMIN;
-import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserRole.EMP;
+import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserRole.*;
 
 @Configuration
 @EnableWebSecurity
@@ -21,16 +20,25 @@ public class ApplicationSecurityConfig  {
 
         httpSecurity
                 .csrf().disable()
-                .authorizeHttpRequests((authz) -> authz
-                        .antMatchers("/","index.html")
-                        .permitAll()
-                        //.antMatchers("/employee-management/employee/save").hasRole(ADMIN.name())
-                        .antMatchers(HttpMethod.POST,"/employee-management/**").hasAnyAuthority(EMPLOYEE_SAVE.getPermission())
-                        .antMatchers(HttpMethod.DELETE,"/employee-management/**").hasAuthority(EMPLOYEE_DELETE.getPermission())
-                        .antMatchers(HttpMethod.PUT,"/employee-management/**").hasAuthority(EMPLOYEE_EDIT.getPermission())
-                        .antMatchers(HttpMethod.GET,"/employee-management/**").hasAnyRole(ADMIN.name(), EMP.name())
-                        .anyRequest()
-                        .authenticated()
+                .authorizeHttpRequests((authz) -> {
+                            try {
+                                authz
+                                        .antMatchers("/","index.html")
+                                        .permitAll()
+                                        //.antMatchers("/employee-management/employee/save").hasRole(ADMIN.name())
+
+                                        .antMatchers(HttpMethod.POST,"/employee-management/**").hasAnyAuthority(EMPLOYEE_SAVE.getPermission())
+                                        .antMatchers(HttpMethod.DELETE,"/employee-management/**").hasAuthority(EMPLOYEE_DELETE.getPermission())
+                                        .antMatchers(HttpMethod.PUT,"/employee-management/**").hasAuthority(EMPLOYEE_EDIT.getPermission())
+                                        .antMatchers(HttpMethod.GET,"/employee-management/**").hasAnyRole(ADMIN.name(), EMP.name(), MANAGER.name())
+                                        .anyRequest()
+                                        .authenticated()
+                                        .and()
+                                        .formLogin().usernameParameter("username").passwordParameter("password");
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
                 )
                 .httpBasic(withDefaults());
 

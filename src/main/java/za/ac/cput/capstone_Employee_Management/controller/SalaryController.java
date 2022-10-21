@@ -28,7 +28,7 @@ public class SalaryController
     }
 
     @PostMapping("save")
-    public ResponseEntity<Salary> save(@RequestBody @Valid Salary salary)
+    public ResponseEntity<Salary> save(@RequestBody Salary salary)
     {
         Salary save = salaryService.save(salary);
         return ResponseEntity.ok(save);

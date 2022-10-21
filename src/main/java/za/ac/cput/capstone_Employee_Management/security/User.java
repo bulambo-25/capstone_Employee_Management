@@ -1,4 +1,11 @@
 package za.ac.cput.capstone_Employee_Management.security;
+  /*
+    |--------------------------------------------------------------------------
+    |UserDetails-Users/class
+    |--------------------------------------------------------------------------
+    | Consists of users and with set password and username
+
+    */
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,8 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserRole.ADMIN;
-import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserRole.EMP;
+import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserRole.*;
 
 @Configuration
 public class User {
@@ -18,7 +24,7 @@ public class User {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Bean
+   @Bean
     protected UserDetailsService getUserDetailsService(){
         UserDetails Admin= org.springframework.security.core.userdetails.User.builder()
                 .username("Farai")
@@ -34,7 +40,13 @@ public class User {
                 //.roles(EMPLOYEE.name())
                 .build();
 
-        return new InMemoryUserDetailsManager(Admin,Employee);
+       UserDetails manager= org.springframework.security.core.userdetails.User.builder()
+               .username("Kululo")
+               .password(passwordEncoder.encode("2022"))
+               .authorities(MANAGER.getGrantedAuthorities())
+               .build();
+
+        return new InMemoryUserDetailsManager(Admin,Employee,manager);
     }
 
 }
