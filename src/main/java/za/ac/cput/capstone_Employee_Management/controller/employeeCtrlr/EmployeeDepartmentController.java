@@ -31,7 +31,7 @@ public class EmployeeDepartmentController {
         EmployeeDepartment save = employeeDepartmentApi.save(employeeDepartment);
         return ResponseEntity.ok(save);
     }
-    @PutMapping("read/{ID}")
+    @GetMapping("read/{ID}")
     public ResponseEntity<EmployeeDepartment> read(@PathVariable EmployeeDepartment.EmployeeDepartmentID ID) {
         EmployeeDepartment read = employeeDepartmentService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

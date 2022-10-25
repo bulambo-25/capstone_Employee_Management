@@ -37,7 +37,7 @@ public class EmployeeSalaryController
         return ResponseEntity.ok(save);
     }
 
-    @PostMapping("read/{ID}")
+    @GetMapping("read/{ID}")
     public ResponseEntity<EmployeeSalary> read(@PathVariable EmployeeSalary.EmployeeSalaryID ID) {
         EmployeeSalary read = employeeSalaryService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

@@ -30,7 +30,7 @@ public class DepartmentController {
         return ResponseEntity.ok(save);
     }
 
-    @PutMapping("read/{ID}")
+    @GetMapping("read/{ID}")
     public ResponseEntity<Department> read(@PathVariable Long ID) {
         Department read = departmentService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

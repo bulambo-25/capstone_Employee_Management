@@ -34,7 +34,7 @@ public class ContactTypeController {
         return ResponseEntity.ok(save);
     }
 
-    @PutMapping("read/{ID}")
+    @GetMapping("read/{ID}")
     public ResponseEntity<ContactType> read(@PathVariable Long ID) {
         ContactType read = contactTypeService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -45,7 +45,7 @@ public class ContactTypeController {
         contactTypeService.update(id, contactType);
         return ResponseEntity.noContent().build();
     }
-    @PutMapping("findByEmail/{email}")
+    @GetMapping("findByEmail/{email}")
     public ResponseEntity<ContactType> read(@PathVariable String email) {
         ContactType findByEmail = contactTypeService.findByEmail(email);
         return ResponseEntity.ok(findByEmail);

@@ -34,7 +34,7 @@ public class EmployeeController {
         return ResponseEntity.ok(save);
     }
 
-    @PutMapping("read/{ID}")
+    @GetMapping("read/{ID}")
     public ResponseEntity<Employee> read(@PathVariable Long ID) {
         Employee read = employeeService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
