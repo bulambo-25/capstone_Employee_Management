@@ -10,4 +10,6 @@ public interface EmployeeService  extends IService<Employee,Long> {
     void deleteByEmployeeId(Long ID);
     List<Employee> findByName(String name);
 
+
+
 }

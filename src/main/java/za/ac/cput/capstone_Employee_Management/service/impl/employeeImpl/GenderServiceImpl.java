@@ -3,6 +3,7 @@ package za.ac.cput.capstone_Employee_Management.service.impl.employeeImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.capstone_Employee_Management.domain.Gender;
+import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
 import za.ac.cput.capstone_Employee_Management.repository.interf.employeeInterf.GenderRepository;
 import za.ac.cput.capstone_Employee_Management.service.interf.employeeInterf.GenderService;
 
@@ -31,6 +32,17 @@ public class GenderServiceImpl implements GenderService {
     @Override
     public Optional<Gender> read(Long integer) {
         return this.repository.findById(integer);
+    }
+
+    @Override
+    public void update(Long aLong, Gender obj) {
+        List<Gender>  list=findAll();
+        for( int i=0; i<list.size(); i++) {
+            Gender gender=list.get(i);
+            if (gender.getGenderId().equals(obj.getGenderId())) {
+                repository.save(obj);
+            }
+        }
     }
 
     @Override

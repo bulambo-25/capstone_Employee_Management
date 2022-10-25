@@ -2,6 +2,7 @@ package za.ac.cput.capstone_Employee_Management.service.impl;
 
 import org.springframework.stereotype.Service;
 import za.ac.cput.capstone_Employee_Management.domain.Leaves;
+import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
 import za.ac.cput.capstone_Employee_Management.factory.LeaveFactory;
 import za.ac.cput.capstone_Employee_Management.repository.interf.LeaveRepository;
 import za.ac.cput.capstone_Employee_Management.service.interf.LeaveService;
@@ -37,7 +38,16 @@ public class LeaveServiceImpl implements LeaveService {
         return this.leaveRepository.findById(Integer);
     }
 
-
+    @Override
+    public void update(Long aLong, Leaves obj) {
+        List<Leaves>  list=findAll();
+        for( int i=0; i<list.size(); i++) {
+            Leaves employee=list.get(i);
+            if (employee.getLeaveId().equals(obj.getLeaveId())) {
+                leaveRepository.save(obj);
+            }
+        }
+    }
 
 
     @Override

@@ -36,6 +36,11 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
     }
 
     @Override
+    public void update(EmployeeLeave.EmployeeLeaveID employeeLeaveID, EmployeeLeave obj) {
+
+    }
+
+    @Override
     public void delete(EmployeeLeave employeeLeave) {
         employeeLeaveRepository.delete(employeeLeave);
     }

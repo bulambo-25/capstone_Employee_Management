@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.capstone_Employee_Management.domain.Leaves;
+import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
 import za.ac.cput.capstone_Employee_Management.service.interf.LeaveService;
 
 import javax.validation.Valid;
@@ -36,6 +37,12 @@ public class LeaveController {
         Leaves leave= this.leaveService.read(ID).
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(leave);
+    }
+
+    @PutMapping("update/{id}")
+    public  ResponseEntity update(@PathVariable  Long id,@RequestBody Leaves leave ){
+        leaveService.update(id, leave);
+        return ResponseEntity.noContent().build();
     }
     @DeleteMapping("delete")
     public ResponseEntity<Void> delete(Leaves leave) {

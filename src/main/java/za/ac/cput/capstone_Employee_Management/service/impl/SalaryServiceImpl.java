@@ -5,7 +5,9 @@ package za.ac.cput.capstone_Employee_Management.service.impl;
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.ac.cput.capstone_Employee_Management.domain.Leaves;
 import za.ac.cput.capstone_Employee_Management.domain.Salary;
+import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
 import za.ac.cput.capstone_Employee_Management.factory.SalaryFactory;
 import za.ac.cput.capstone_Employee_Management.repository.interf.SalaryRepository;
 import za.ac.cput.capstone_Employee_Management.service.interf.SalaryService;
@@ -47,6 +49,18 @@ public class SalaryServiceImpl implements SalaryService
     public Optional <Salary> read (Long ID)
     {
         return salaryRepository.findById(ID);
+    }
+
+    @Override
+    public void update(Long aLong, Salary obj) {
+
+        List<Salary>  list=findAll();
+        for( int i=0; i<list.size(); i++) {
+            Salary employee=list.get(i);
+            if (employee.getSalaryId().equals(obj.getSalaryId())) {
+                salaryRepository.save(obj);
+            }
+        }
     }
 
     @Override

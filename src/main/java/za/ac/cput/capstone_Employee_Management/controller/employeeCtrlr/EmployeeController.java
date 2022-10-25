@@ -40,6 +40,13 @@ public class EmployeeController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(read);
     }
+
+    @PutMapping("update/{id}")
+    public  ResponseEntity update(@PathVariable  Long id,@RequestBody Employee employee ){
+        employeeService.update(id, employee);
+         return ResponseEntity.noContent().build();
+    }
+
     @PutMapping("findByName/{name}")
     public ResponseEntity<List<Employee>> findByLastName(@PathVariable String name) {
         List<Employee>  read = employeeService.findByName(name);

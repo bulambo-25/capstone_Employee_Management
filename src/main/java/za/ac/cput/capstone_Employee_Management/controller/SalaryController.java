@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.capstone_Employee_Management.domain.Salary;
+import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
 import za.ac.cput.capstone_Employee_Management.service.impl.SalaryServiceImpl;
 
 import javax.validation.Valid;
@@ -39,6 +40,12 @@ public class SalaryController
     {
         Salary read = salaryService.read(ID).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(read);
+    }
+    @PutMapping("update/{id}")
+    public  ResponseEntity update(@PathVariable  Long id,@RequestBody Salary employee ){
+        salaryService.update(id, employee);
+        System.out.println(employee.toString());
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("delete")
