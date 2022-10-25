@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import za.ac.cput.capstone_Employee_Management.domain.Department;
 import za.ac.cput.capstone_Employee_Management.domain.Salary;
 import za.ac.cput.capstone_Employee_Management.service.impl.SalaryServiceImpl;
 
@@ -54,6 +55,7 @@ public class SalaryController
         this.salaryService.deleteByID(ID);
         return ResponseEntity.noContent().build();
     }
+
 
     @GetMapping("getAll")
     public ResponseEntity<List<Salary>> findAll()

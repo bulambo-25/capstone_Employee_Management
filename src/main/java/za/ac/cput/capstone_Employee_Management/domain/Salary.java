@@ -15,7 +15,7 @@ public class Salary implements Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    @NotNull@Column(name = "salary_ID")
+    @Column(name = "salary_ID")
     private Long salaryId;
     @Column(name = "salary_Amount")
     private String salaryAmount;
@@ -38,19 +38,9 @@ public class Salary implements Serializable
         return salaryId;
     }
 
-    public void setSalaryId(Long salaryId)
-    {
-        this.salaryId = salaryId;
-    }
-
     public String getSalaryAmount()
     {
         return salaryAmount;
-    }
-
-    public void setSalaryAmount(String salaryAmount)
-    {
-        this.salaryAmount = salaryAmount;
     }
 
     public String getSalaryDescription()
