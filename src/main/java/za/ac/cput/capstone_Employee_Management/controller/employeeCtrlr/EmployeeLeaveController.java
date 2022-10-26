@@ -39,7 +39,7 @@ public class EmployeeLeaveController {
         EmployeeLeave save = employeeLeaveApi.save(employeeLeave);
         return ResponseEntity.ok(save);
     }
-    @PutMapping("read/{ID}")
+    @GetMapping("read/{ID}")
     public ResponseEntity<EmployeeLeave> read(@PathVariable EmployeeLeave.EmployeeLeaveID ID) {
         EmployeeLeave read = employeeLeaveService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.capstone_Employee_Management.domain.Department;
+import za.ac.cput.capstone_Employee_Management.domain.employee.Employee;
 import za.ac.cput.capstone_Employee_Management.service.impl.DepartmentServiceImpl;
 
 import javax.validation.Valid;
@@ -29,11 +30,16 @@ public class DepartmentController {
         return ResponseEntity.ok(save);
     }
 
-    @PutMapping("read/{ID}")
+    @GetMapping("read/{ID}")
     public ResponseEntity<Department> read(@PathVariable Long ID) {
         Department read = departmentService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(read);
+    }
+    @PutMapping("update/{id}")
+    public  ResponseEntity update(@PathVariable  Long id,@RequestBody Department department ){
+        departmentService.update(id, department);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("delete")

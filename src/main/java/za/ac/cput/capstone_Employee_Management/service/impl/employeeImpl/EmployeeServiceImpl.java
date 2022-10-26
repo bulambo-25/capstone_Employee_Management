@@ -29,8 +29,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findById(Id);
     }
 
+  @Override
+  public void update(Long aLong, Employee obj) {
+    List<Employee>  list=findAll();
+    for( int i=0; i<list.size(); i++) {
+      Employee employee=list.get(i);
+      if (employee.getEmployeeId().equals(obj.getEmployeeId())) {
+        employeeRepository.save(obj);
+}
+    }
 
-    @Override
+
+  }
+
+
+  @Override
     public void delete(Employee employee) {
            employeeRepository.delete(employee);
     }

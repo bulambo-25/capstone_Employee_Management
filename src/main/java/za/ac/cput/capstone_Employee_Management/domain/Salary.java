@@ -24,7 +24,6 @@ public class Salary implements Serializable
 
     protected Salary()
     {
-
     }
     private Salary(Builder builder)
     {

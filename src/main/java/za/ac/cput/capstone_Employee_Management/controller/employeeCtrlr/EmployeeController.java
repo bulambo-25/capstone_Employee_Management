@@ -34,12 +34,19 @@ public class EmployeeController {
         return ResponseEntity.ok(save);
     }
 
-    @PutMapping("read/{ID}")
+    @GetMapping("read/{ID}")
     public ResponseEntity<Employee> read(@PathVariable Long ID) {
         Employee read = employeeService.read(ID)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(read);
     }
+
+    @PutMapping("update/{id}")
+    public  ResponseEntity update(@PathVariable  Long id,@RequestBody Employee employee ){
+        employeeService.update(id, employee);
+         return ResponseEntity.noContent().build();
+    }
+
     @PutMapping("findByName/{name}")
     public ResponseEntity<List<Employee>> findByLastName(@PathVariable String name) {
         List<Employee>  read = employeeService.findByName(name);

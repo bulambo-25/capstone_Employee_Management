@@ -33,6 +33,11 @@ public class EmployeeAddressIm implements EmployeeAddressService
     }
 
     @Override
+    public void update(EmployeeAddress.EmployeeAddressId employeeAddressId, EmployeeAddress obj) {
+
+    }
+
+    @Override
     public void delete(EmployeeAddress employeeAddress) {
 
 

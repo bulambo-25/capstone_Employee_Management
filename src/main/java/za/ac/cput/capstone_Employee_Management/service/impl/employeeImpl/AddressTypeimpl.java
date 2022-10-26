@@ -35,6 +35,11 @@ public class AddressTypeimpl  implements AddressTypeService {
     }
 
     @Override
+    public void update(Long aLong, AddressType obj) {
+
+    }
+
+    @Override
     public void delete(AddressType addressType) {
      this.repository.delete(addressType);
     }

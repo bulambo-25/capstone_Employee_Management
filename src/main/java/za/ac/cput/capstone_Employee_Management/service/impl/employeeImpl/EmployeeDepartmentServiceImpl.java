@@ -29,6 +29,11 @@ public class EmployeeDepartmentServiceImpl implements EmployeeDepartmentService 
         return this.employeeDepartmentRepository.findById(integer);
     }
 
+    @Override
+    public void update(EmployeeDepartment.EmployeeDepartmentID employeeDepartmentID, EmployeeDepartment obj) {
+
+    }
+
 
     @Override
     public void delete(EmployeeDepartment employeeDepartment) {

@@ -35,7 +35,12 @@ public class EmployeeSalaryServiceImpl implements EmployeeSalaryService
             return employeeSalaryRepository.findById(employeeSalaryID);
         }
 
-        @Override
+    @Override
+    public void update(EmployeeSalary.EmployeeSalaryID employeeSalaryID, EmployeeSalary obj) {
+
+    }
+
+    @Override
         public void delete(EmployeeSalary employeeSalary)
         {
             employeeSalaryRepository.delete(employeeSalary);

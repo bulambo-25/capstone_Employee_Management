@@ -35,6 +35,11 @@ public class EmployeeGenderImpl implements EmployeeGenderService {
     }
 
     @Override
+    public void update(EmployeeGender.EmployeeGenderID employeeGenderID, EmployeeGender obj) {
+
+    }
+
+    @Override
     public void delete(EmployeeGender employeeGender) {
         this.repository.delete(employeeGender);
     }

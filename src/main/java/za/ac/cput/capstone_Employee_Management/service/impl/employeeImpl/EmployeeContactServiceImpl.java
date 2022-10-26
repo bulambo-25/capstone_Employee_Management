@@ -28,6 +28,11 @@ final EmployeeContactRepository employeeContactRepository;
     }
 
     @Override
+    public void update(EmployeeContact.EmployeeContactID employeeContactID, EmployeeContact obj) {
+
+    }
+
+    @Override
     public void delete(EmployeeContact employeeContact) {
           employeeContactRepository.delete(employeeContact);
     }
