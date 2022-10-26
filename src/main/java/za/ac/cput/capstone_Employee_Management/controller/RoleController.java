@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.capstone_Employee_Management.domain.ContactType;
 import za.ac.cput.capstone_Employee_Management.domain.Leaves;
 import za.ac.cput.capstone_Employee_Management.domain.Role;
+import za.ac.cput.capstone_Employee_Management.domain.Salary;
 import za.ac.cput.capstone_Employee_Management.service.impl.ContactTypeServiceImpl;
 import za.ac.cput.capstone_Employee_Management.service.impl.RoleServiceImpl;
 import za.ac.cput.capstone_Employee_Management.service.interf.LeaveService;
@@ -35,6 +36,12 @@ public class RoleController {
         Role role= this.roleService.read(ID).
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(role);
+    }
+    @PutMapping("update/{id}")
+    public  ResponseEntity update(@PathVariable  Long id,@RequestBody Role employee ){
+        roleService.update(id, employee);
+        System.out.println(employee.toString());
+        return ResponseEntity.noContent().build();
     }
     @DeleteMapping("delete")
     public ResponseEntity<Void> delete(Role role) {

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.capstone_Employee_Management.domain.Leaves;
 import za.ac.cput.capstone_Employee_Management.domain.Role;
+import za.ac.cput.capstone_Employee_Management.domain.Salary;
 import za.ac.cput.capstone_Employee_Management.factory.LeaveFactory;
 import za.ac.cput.capstone_Employee_Management.factory.RoleFactory;
 import za.ac.cput.capstone_Employee_Management.repository.interf.LeaveRepository;
@@ -43,7 +44,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void update(Long aLong, Role obj) {
-
+        List<Role>  list=findAll();
+        for( int i=0; i<list.size(); i++) {
+            Role employee=list.get(i);
+            if (employee.getRoleId().equals(obj.getRoleId())) {
+                roleRepository.save(obj);
+            }
+        }
     }
 
 
