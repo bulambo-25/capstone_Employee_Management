@@ -7,18 +7,19 @@ import za.ac.cput.capstone_Employee_Management.domain.Salary;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
-public class SalaryFactoryTest
+class SalaryFactoryTest
 {
+    Salary salary;
     @Test
-    public void testSuccessBuild()
+    void testSuccessBuild()
     {
-        Salary salary = SalaryFactory.build("20000","Monthly");
+        salary = SalaryFactory.build("20000","Monthly");
         log.info("Salary", salary);
         assertNotNull(salary);
     }
 
     @Test
-    public void testFailureBuild()
+    void testFailureBuild()
     {
         Exception exception = assertThrows(IllegalArgumentException.class,()-> SalaryFactory.build("1000",""));
         assertEquals("Invalid Input",exception.getMessage());
