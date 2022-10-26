@@ -1,5 +1,6 @@
 package za.ac.cput.capstone_Employee_Management.security;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,6 +12,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
 import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserPermission.*;
 import static za.ac.cput.capstone_Employee_Management.security.ApplicationUserRole.*;
 
+
+
+
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig  {
@@ -20,8 +24,8 @@ public class ApplicationSecurityConfig  {
 
         httpSecurity
                 .csrf().disable()
-                .authorizeHttpRequests((authz) -> {
-                            try {
+               .authorizeHttpRequests((authz) -> {
+                           try {
                                 authz
                                         .antMatchers("/","index.html")
                                         .permitAll()
